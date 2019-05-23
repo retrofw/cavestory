@@ -1,0 +1,36 @@
+Loading settings...
+Couldn't open file settings.dat.
+No saved settings; using defaults.
+videoinfo: desktop bpp 32
+Graphics::SetResolution(2)
+Setting scaling 2 and fullscreen=no
+ error << NXSurface::SetScale: CONFIG_MUTABLE_SCALE not set >>
+SDL_SetVideoMode: 320x240 @ 16bpp
+Graphics::FlushAll()
+SIFLoader::LoadHeader: read index of 8 sections
+Loading SIF section 1 from address 004d
+Loading SIF section 2 from address 044c
+SIFSpritesSect: loading 490 sprites
+fonts: using bitmapped from smalfont.bmp
+safemode print: 'I need to extract some game data'
+safemode print: 'before I can start up for the first time.'
+safemode print: ''
+safemode print: 'Before beginning, you should have the Aeon Genesis'
+safemode print: 'English translation of version 1.0.0.6, and drop'
+safemode print: 'Doukutsu.exe and it's "data" directory into the same'
+safemode print: 'folder as the "nx" program you just ran.'
+safemode print: ''
+safemode print: 'If you haven't done that yet, please press ESCAPE now'
+safemode print: 'and come back in a moment. Otherwise, you can'
+safemode print: 'press any other key to start the extraction.'
+run_until_key()
+returning key 13
+safemode print: '= Extracting Files ='
+safemode print: 'cannot find executable Doukutsu.exe'
+safemode print: ''
+safemode print: ''
+safemode print: 'Please put it and it's "data" directory'
+safemode print: 'into the same folder as this program.'
+run_until_key()
+returning key 13
+Graphics::Close()
