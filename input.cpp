@@ -74,6 +74,22 @@ bool input_init(void)
 		mappings[SDLK_c] = DEBUG_FLY_KEY;
 	}
 	#endif
+	
+	
+	//added joystick init
+	int joystick_count = SDL_NumJoysticks();
+	printf("%d joysticks\n", joystick_count);
+	
+	if(joystick_count > 0)
+	{
+		for(int i = 0; i < joystick_count; i++)
+		{
+		SDL_JoystickOpen(i);
+		}
+		SDL_JoystickEventState(SDL_ENABLE);
+	}
+
+	
 	return 0;
 }
 
@@ -143,9 +159,74 @@ void input_poll(void)
 	{
 		switch(evt.type)
 		{
+			
+			//added for joystick support for retrofw
+			case SDL_JOYBUTTONDOWN:
+			case SDL_JOYBUTTONUP:
+			
+				switch(evt.jbutton.button)
+				{
+					case 2:
+						ino = JUMPKEY;
+					break;
+					case 1:
+						ino = FIREKEY;
+					break;
+					case 4:
+						ino = MAPSYSTEMKEY;
+					break;
+					case 0:
+						ino = PREVWPNKEY;
+					break;
+					case 3:
+						ino = NEXTWPNKEY;
+					break;
+					case 5:
+						ino = INVENTORYKEY;
+					break;
+					case 8:
+						ino = ESCKEY;
+					break;
+					case 9:
+						ino = F12KEY;
+					break;
+					
+				}
+				
+				inputs[ino] = (evt.type == SDL_JOYBUTTONDOWN);
+					
+				last_sdl_key = evt.jbutton.which;
+				
+			break;
+
+			case SDL_JOYAXISMOTION:
+				if(	evt.jaxis.axis & 1)
+				{
+					inputs[UPKEY] = 0;
+					if(evt.jaxis.value < -300) inputs[UPKEY] = 1;
+					
+					inputs[DOWNKEY] = 0;
+					if(evt.jaxis.value > 300) inputs[DOWNKEY] = 1;
+					
+				}	
+				else
+				{
+					inputs[LEFTKEY] = 0;
+					if(evt.jaxis.value < -300) inputs[LEFTKEY] = 1;
+					
+					inputs[RIGHTKEY] = 0;
+					if(evt.jaxis.value > 300) inputs[RIGHTKEY] = 1;
+				}	
+				
+			break;
+		//end of joystick code
+			
+			
 			case SDL_KEYDOWN:
 			case SDL_KEYUP:
 			{
+					
+				
 				key = evt.key.keysym.sym;
 				
 				#ifndef __SDLSHIM__
@@ -221,6 +302,7 @@ void input_poll(void)
 				}
 			}
 			break;
+			
 			
 			case SDL_QUIT:
 			{
