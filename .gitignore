@@ -1,0 +1,8 @@
+*.o
+.DS_Store
+nbproject/**
+*.ipk
+*.opk
+*.elf
+output/**
+*.dge

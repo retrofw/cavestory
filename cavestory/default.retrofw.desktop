@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Cave Story
+Comment=Story driven, action-platformer
+Exec=cavestory.dge
+Icon=cavestory
+Categories=games;
+X-OD-Manual=cavestory.man.txt
+X-OD-Selector=
+X-OD-Filter=
+Terminal=false
+Type=Application
+StartupNotify=true

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+mkdir -p ipkg/home/retrofw/games/cavestory
+cp nx ipkg/home/retrofw/games/cavestory/cavestory.dge
+cp font.ttf ipkg/home/retrofw/games/cavestory/
+cp smalfont.bmp ipkg/home/retrofw/games/cavestory/
+cp sprites.sif ipkg/home/retrofw/games/cavestory/
+cp tilekey.dat ipkg/home/retrofw/games/cavestory/
+
+cd ipkg
+
+tar -czvf control.tar.gz control
+tar -czvf data.tar.gz home
+ar rv cavestory.ipk control.tar.gz data.tar.gz debian-binary
+
+cd ..
+
+mv ipkg/cavestory.ipk .
+rm ipkg/control.tar.gz
+rm ipkg/data.tar.gz
+rm ipkg/home/retrofw/games/cavestory/cavestory.dge
